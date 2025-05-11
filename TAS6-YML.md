@@ -95,9 +95,16 @@ Figura 8-4 Definicion de un volumen
 Al finalizar la práctica, se logró cumplir exitosamente los objetivos planteados. Se desplegó correctamente un contenedor de base de datos MySQL, se desplegaron los servicios de phpMyAdmin y WordPress, cada uno conectado correctamente a la base de datos MySQL a través de una red personalizada definida en el archivo ``docker-compose.yml``. Desde phpMyAdmin, accesible mediante el puerto ``8083``, se pudo verificar la existencia de la base de datos generada automáticamente por WordPress, confirmando así la conexión entre los servicios. A través del navegador web, se accedió al instalador de WordPress en el puerto ``8084``, completando su configuración inicial y dejando operativa la plataforma para su uso. Durante el desarrollo de la práctica, se aplicaron conceptos clave como la creación de redes personalizadas, la definición de volúmenes para almacenamiento persistente y el uso de variables de entorno para conectar servicios. Todo el entorno fue desplegado utilizando únicamente el archivo ``docker-compose.yml``, lo cual simplificó la configuración, redujo errores y permitió una orquestación más eficiente de los contenedores.
 
 Todo el desarrollo de la práctica fue documentado con capturas de pantalla que evidencian la creación de la red personalizada, la definición de volúmenes y la correcta estructuración del ``archivo docker-compose.yml`` para el despliegue de los contenedores de ``MySQL``, ``phpMyAdmin`` y ``WordPress``. A través de Docker Compose se logró desplegar los servicios de forma eficiente, especificando variables de entorno, puertos y dependencias. Se verificó la conectividad entre los contenedores, la configuración adecuada de las credenciales de acceso y la correcta visualización del sitio WordPress.
+
 <img src="./compos/c3.PNG" alt="drawing0" width="500"/>
+
+
 <img src="./compos/c4.PNG" alt="drawing0" width="500"/>
+
+
 <img src="./compos/c5.PNG" alt="drawing0" width="500"/>
+
+
 
 ## 10. Bibliografía
     
