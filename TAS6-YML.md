@@ -1,5 +1,5 @@
 
-# TAS4-Red de Contenedores
+# TAS6-Docker Compose con YML
 ## 1. Titulo
 Despliegue de WordPress, MySQL y phpMyAdmin en Contenedores Docker Usando Docker Compose
 
