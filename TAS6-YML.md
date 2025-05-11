@@ -19,7 +19,7 @@ También incluye comandos para gestionar todo el ciclo de vida de la aplicación
 - Transmitir la salida del registro de los servicios en ejecución
 - Ejecutar un comando único en un servicio
 
-<img src="./redes-container/redes.png" alt="drawing0" width="500"/>
+<img src="./compos/compose.png" alt="drawing0" width="500"/>
 
 ## YAML
 
