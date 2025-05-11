@@ -5,31 +5,30 @@ Despliegue de WordPress, MySQL y phpMyAdmin en Contenedores Docker Usando Docker
 
 ## 2.Tiempo de duracion 
 El tiempo fue de 160 minutos. 
+
 ## 3. Fundamentos:
 
-## Redes Docker 
+## Docker Compose 
 
-Las redes Docker configuran las comunicaciones entre contenedores vecinos y servicios externos. Los contenedores deben estar conectados a una red Docker para recibir conectividad de red. Las rutas de comunicación disponibles para el contenedor dependen de sus conexiones de red (Docker Networking - Basics, Network Types & Examples, n.d.).
+Docker Compose es una herramienta para definir y ejecutar aplicaciones multicontenedor. Es la clave para lograr una experiencia de desarrollo e implementación optimizada y eficiente. Compose simplifica el control de toda la pila de aplicaciones, facilitando la gestión de servicios, redes y volúmenes en un único archivo de configuración YAML. Con un solo comando, se crean e inician todos los servicios desde el archivo de configuración. Compose funciona en todos los entornos: producción, staging, desarrollo, pruebas y flujos de trabajo de integración continua (CI)  (Docker Compose | Documentación de Docker, n.d.). 
 
-La red de contenedores se refiere a la capacidad de los contenedores de conectarse y comunicarse entre sí o con cargas de trabajo que no sean Docker. Los contenedores tienen la red habilitada por defecto y pueden realizar conexiones salientes. Un contenedor no tiene información sobre el tipo de red al que está conectado ni si sus pares también son cargas de trabajo de Docker. Un contenedor solo ve una interfaz de red con una dirección IP, una puerta de enlace, una tabla de enrutamiento, servicios DNS y otros detalles de red. Esto es así, a menos que el contenedor utilice el nonecontrolador de red (Redes | Documentación de Docker, n.d.).
+También incluye comandos para gestionar todo el ciclo de vida de la aplicación:
+
+- Iniciar, detener y reconstruir servicios
+- Ver el estado de los servicios en ejecución
+- Transmitir la salida del registro de los servicios en ejecución
+- Ejecutar un comando único en un servicio
 
 <img src="./redes-container/redes.png" alt="drawing0" width="500"/>
 
-## MySQL 
+## YAML
 
-La forma tradicional de ejecutar una base de datos MySQL es instalar los paquetes MySQL y las aplicaciones simplemente tendrían que conectarse al puerto de escucha. La mayoría de las tareas de administración, como el ajuste de la configuración, las copias de seguridad, la restauración, la actualización de la base de datos, el ajuste del rendimiento y la resolución de problemas, deben ejecutarse en el propio host de la base de datos. Se espera que haya varios puertos accesibles para la conexión, por ejemplo, el puerto TCP 22 para SSH, el TCP 3306 para MySQL o el UDP 514 para syslog (Contenedores Docker de MySQL: Conceptos Básicos | Variousnines, n.d.).
+YAML es un lenguaje de serialización de datos que las personas pueden comprender y suele utilizarse en el diseño de archivos de configuración. Para algunas personas, la sigla YAML significa "otro lenguaje de marcado más"; para otras, es un acrónimo recursivo que quiere decir "YAML no es un lenguaje de marcado", lo que enfatiza la idea de que se utiliza para los datos, no para los documentos (YAML: Qué Es, Usos, Sintaxis y Ejemplos, n.d.). 
 
-En un contenedor, piense en MySQL como una sola unidad que solo sirve contenido relacionado con MySQL en el puerto 3306. La mayor parte de las operaciones se realizan en este único canal. Docker funciona de maravilla empaquetando su aplicación/software en una sola unidad, que luego puede implementar en cualquier lugar siempre que el motor Docker esté instalado. Espera que el paquete o la imagen se ejecute como un único proceso por contenedor. Con Docker, el flujo sería que usted (o alguien más) cree una imagen de MySQL con una versión y un proveedor específicos, la empaquete y la distribuya a cualquiera que desee ejecutar una instancia de MySQL rápidamente (Contenedores Docker de MySQL: Conceptos Básicos | Variousnines, n.d.).
+YAML tiene características que provienen de Perl, C, XML, HTML y otros lenguajes de programación. También se basa en JSON, por lo que los archivos JSON son compatibles con YAML. No hay símbolos de formato habituales, como llaves, corchetes, etiquetas de cierre o comillas. Además, los archivos de este lenguaje son más sencillos de leer, ya que utilizan sangría al estilo Python para determinar la estructura e indicar la incrustación de un elemento de código dentro de otro. Está diseñado para que no se admitan los caracteres de tabulación y así se mantenga la portabilidad en todos los sistemas, por lo que se usan los espacios en blanco, que son los caracteres de espacio. Los comentarios se identifican con una almohadilla o símbolo numeral (#), y su uso es una práctica recomendada, ya que describen la intención del código. YAML no es compatible con los comentarios que tienen varias líneas, por lo cual el carácter de almohadilla se debe utilizar como sufijo de cada una (YAML: Qué Es, Usos, Sintaxis y Ejemplos, n.d.).
 
 
 <img src="./redes-container/sql.png" alt="drawing0" width="500"/>
-
-## PhpMyAdmin
-
-Sin una interfaz de usuario, solo se puede interactuar con MySQL mediante la Terminal (o PowerShell y el Símbolo del sistema, según el sistema operativo). phpMyAdmin soluciona este problema al ser una aplicación web portátil de código abierto que actúa como herramienta de administración para MySQL. Una alternativa sería MySQL Workbench , pero requiere instalación en el equipo local y anula el propósito de usar Docker. Docker es una herramienta que empaqueta software en contenedores, independientemente del sistema local. Docker se utilizó para ejecutar MySQL y phpMyAdmin en el equipo local sin necesidad de instalación, y puede usarse para empaquetar toda la configuración en el futuro (MySQL y PhpMyAdmin En Docker - Ciencia de Datos de Pila Completa, n.d.).
-
-
-<img src="./redes-container/php.png" alt="drawing0" width="500"/>
 
 ## 4. Conocimientos previos.
    
@@ -60,6 +59,7 @@ Para realizar esta practica el estudiante necesita tener claro los siguientes te
 - Cheat Sheet de comandos Docker.
 - Documentación oficial de MySQL, phpMyAdmin y Wordpress.
 - Videos tutoriales de redes Docker.
+
 ## 8. Procedimiento
 
 ### Pasos 
@@ -78,32 +78,30 @@ Figura 8-2 Estructura de los servicios.
 
 3. Definir una red.
 
-Figura 8-3 Creacion de la red personalizada.
+Figura 8-3 Definicion de la red personalizada.
 
 <img src="./redes-container/r3.PNG" alt="drawing0" width="500"/>
 
 
 4. Definir un volumen.
 
-Figura 8-4 Conexion de los contenedores a la red.
+Figura 8-4 Definicion de un volumen
 
 <img src="./redes-container/r4.PNG" alt="drawing0" width="500"/>
 
 
 ## 9. Resultados esperados:
     
-Al finalizar la práctica, se logró cumplir exitosamente los objetivos planteados. Se desplegó correctamente un contenedor de base de datos MySQL, configurando las credenciales de acceso (root/admin) y exponiendo el puerto 3307. Mediante la creación de una red personalizada, se facilitó la comunicación entre los contenedores de MySQL y phpMyAdmin, evitando conflictos de puertos y garantizando la resolución de nombres de servicio.
+Al finalizar la práctica, se logró cumplir exitosamente los objetivos planteados. Se desplegó correctamente un contenedor de base de datos MySQL, se desplegaron los servicios de phpMyAdmin y WordPress, cada uno conectado correctamente a la base de datos MySQL a través de una red personalizada definida en el archivo ``docker-compose.yml``. Desde phpMyAdmin, accesible mediante el puerto ``8083``, se pudo verificar la existencia de la base de datos generada automáticamente por WordPress, confirmando así la conexión entre los servicios. A través del navegador web, se accedió al instalador de WordPress en el puerto ``8084``, completando su configuración inicial y dejando operativa la plataforma para su uso. Durante el desarrollo de la práctica, se aplicaron conceptos clave como la creación de redes personalizadas, la definición de volúmenes para almacenamiento persistente y el uso de variables de entorno para conectar servicios. Todo el entorno fue desplegado utilizando únicamente el archivo ``docker-compose.yml``, lo cual simplificó la configuración, redujo errores y permitió una orquestación más eficiente de los contenedores.
 
-Desde phpMyAdmin, accedido a través del navegador en el puerto 8081, se pudo gestionar el servidor MySQL y crear de forma gráfica una base de datos de prueba, verificando así la conectividad y funcionamiento del sistema. Durante el proceso se aplicaron comandos esenciales de Docker como ``docker network create``, ``docker network connect``, y se comprendió la importancia de las variables de entorno para la configuración de servicios. Todo el desarrollo de la práctica fue documentado con capturas de pantalla que evidencian la creación de la red, el despliegue de los contenedores, la configuración de acceso y la creación exitosa de una base de datos de prueba desde phpMyAdmin.
-
+Todo el desarrollo de la práctica fue documentado con capturas de pantalla que evidencian la creación de la red personalizada, la definición de volúmenes y la correcta estructuración del ``archivo docker-compose.yml`` para el despliegue de los contenedores de ``MySQL``, ``phpMyAdmin`` y ``WordPress``. A través de Docker Compose se logró desplegar los servicios de forma eficiente, especificando variables de entorno, puertos y dependencias. Se verificó la conectividad entre los contenedores, la configuración adecuada de las credenciales de acceso y la correcta visualización del sitio WordPress.
 <img src="./redes-container/resultado.PNG" alt="drawing0" width="500"/>
 
 
 ## 10. Bibliografía
     
-- Contenedores Docker de MySQL: Conceptos básicos | Variousnines. (n.d.). Retrieved April 25, 2025, from https://severalnines.com/blog/mysql-docker-containers-understanding-basics/
-- Docker Networking - Basics, Network Types & Examples. (n.d.). Retrieved April 25, 2025, from https://spacelift.io/blog/docker-networking
-- MySQL y phpMyAdmin en Docker - Ciencia de datos de pila completa. (n.d.). Retrieved April 25, 2025, from https://andrewyewcy.com/MySQL-and-phpMyAdmin-on-Docker/
-- Redes | Documentación de Docker. (n.d.). Retrieved April 25, 2025, from https://docs.docker.com/engine/network/
+- Docker Compose | Documentación de Docker. (n.d.). Retrieved May 9, 2025, from https://docs.docker.com/compose/
+- YAML: qué es, usos, sintaxis y ejemplos. (n.d.). Retrieved May 9, 2025, from https://www.redhat.com/es/topics/automation/what-is-yaml
+ 
 
 
